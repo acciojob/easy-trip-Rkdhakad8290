@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Service
 public class PassengerServiceImpl implements PassengerService {
-    private final Map<Integer, Passenger> passengerRepository = new HashMap<>();
+    private final Map<Integer, Passenger> passengerRepository = new HashMap<>();//passangerRepository
 
     @Override
     public String addPassenger(Passenger passenger) {
