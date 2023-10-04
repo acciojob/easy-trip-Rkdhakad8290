@@ -128,10 +128,10 @@ public class FlightServiceImpl implements FlightService {
         }
 
         // Get the flight from the database
-        Flight flight = flightDatabase.get(flightId);
+        Airport airport = flightDatabase.get(flightId);
 
         // Get the airport name from the flight object
-        String airportName = flight.getAirportName(); // Assuming 'getFromAirport()' returns the airport object
+        String airportName = airport.getAirportName(); // Assuming 'getFromAirport()' returns the airport object
 
         // Return the airport name
         return airportName;

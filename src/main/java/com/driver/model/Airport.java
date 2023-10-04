@@ -9,6 +9,8 @@ public class Airport {
     private int noOfTerminals;
 
     private City city;  //GIVEN : There will be only 1 airport in 1 city
+    private int bookedPassengerCount;
+
 
     public Airport() {
     }
@@ -41,5 +43,10 @@ public class Airport {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public int getBookedPassengerCount() {
+
+        return bookedPassengerCount;
     }
 }

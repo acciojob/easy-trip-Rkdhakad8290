@@ -2,7 +2,7 @@ package com.driver.model;
 
 import java.util.Date;
 
-public class Flight {
+public class Flight extends Airport {
 
     private int flightId; //This is a unique key for a flight
 
@@ -75,21 +75,5 @@ public class Flight {
 
     public void setDuration(double duration) {
         this.duration = duration;
-    }
-
-    public String getAirportName() {
-        return airportName;
-    }
-
-    public void setAirportName(String airportName) {
-        this.airportName = airportName;
-    }
-
-    public int getBookedPassengerCount() {
-        return bookedPassengerCount;
-    }
-
-    public void setBookedPassengerCount(int bookedPassengerCount) {
-        this.bookedPassengerCount = bookedPassengerCount;
     }
 }
