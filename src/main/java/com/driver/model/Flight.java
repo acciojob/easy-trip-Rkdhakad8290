@@ -77,4 +77,19 @@ public class Flight {
         this.duration = duration;
     }
 
+    public String getAirportName() {
+        return airportName;
+    }
+
+    public void setAirportName(String airportName) {
+        this.airportName = airportName;
+    }
+
+    public int getBookedPassengerCount() {
+        return bookedPassengerCount;
+    }
+
+    public void setBookedPassengerCount(int bookedPassengerCount) {
+        this.bookedPassengerCount = bookedPassengerCount;
+    }
 }

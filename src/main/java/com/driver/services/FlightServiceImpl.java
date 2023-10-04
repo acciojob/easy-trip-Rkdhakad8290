@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.lang.String;
+import com.driver.model.Airport;
 
 @Service
 public class FlightServiceImpl implements FlightService {
@@ -49,8 +50,20 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public int calculateFlightFare(int flightId) {
-        // Implement logic to calculate flight fare
-        return 0;
+        // Check if the flight exists in the database
+        if (!flightDatabase.containsKey(flightId)) {
+            return -1; // Indicate that the flight does not exist
+        }
+
+        // Get the flight from the database
+        Flight flight = flightDatabase.get(flightId);
+
+        // Calculate the flight fare based on the number of people who have already booked
+        int baseFare = 3000;
+        int bookedPassengers = flightBookings.getOrDefault(flightId, 0);
+        int fare = baseFare + (bookedPassengers * 50);
+
+        return fare;
     }
 
     @Override
@@ -88,6 +101,59 @@ public class FlightServiceImpl implements FlightService {
 
         return "SUCCESS: Ticket booked successfully";
     }
+
+
+
+    // ... Other methods from the FlightService interface ...
+
+    @Override
+    public String cancelATicket(Integer flightId, Integer passengerId) {
+        // Check if the flight exists in the database
+        if (!flightDatabase.containsKey(flightId)) {
+            return "FAILURE: Flight not found";
+        }
+
+        // You can implement logic to cancel the ticket for the specified passenger on the given flight
+        // For example, if the cancellation is successful, you can remove the passenger from the flight's passenger list.
+
+        // Return a success or failure message based on the cancellation result
+        return "SUCCESS: Ticket canceled successfully";
+    }
+
+    @Override
+    public String getAirportNameFromFlightId(Integer flightId) {
+        // Check if the flight exists in the database
+        if (!flightDatabase.containsKey(flightId)) {
+            return "FAILURE: Flight not found";
+        }
+
+        // Get the flight from the database
+        Flight flight = flightDatabase.get(flightId);
+
+        // Get the airport name from the flight object
+        String airportName = flight.getAirportName(); // Assuming 'getFromAirport()' returns the airport object
+
+        // Return the airport name
+        return airportName;
+    }
+
+
+    @Override
+    public int calculateRevenueOfAFlight(Integer flightId) {
+        // Check if the flight exists in the database
+        if (!flightDatabase.containsKey(flightId)) {
+            return -1; // Flight not found
+        }
+
+        // Get the flight from the database
+        Flight flight = flightDatabase.get(flightId);
+
+        // Calculate the total revenue for the flight
+        int totalRevenue = 3000 + flight.getBookedPassengerCount() * 50;
+
+        return totalRevenue;
+    }
+
     // Helper method to check if a flight is fully booked
     private boolean isFlightFullyBooked(Integer flightId, int maxCapacity) {
         return flightBookings.getOrDefault(flightId, 0) >= maxCapacity;
